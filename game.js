@@ -32,6 +32,15 @@ let mineMethod = {
     unlocked: true,
     upgradePath: 'research Center',
   },
+  potatoDrill: {
+    name: 'Cheese Drill',
+    genValue: 10,
+    upPrice: 50,
+    quantity: 0,
+    upIncrement: 1.5,
+    unlocked: true,
+    upgradePath: 'research Center',
+  },
 }
 
 
