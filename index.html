@@ -9,6 +9,7 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
   <title>Moon Miner</title>
 
@@ -25,7 +26,7 @@
   </style>
 </head>
 
-<body class="bg-dark text-warning">
+<body class="bg-nebula-1 text-warning">
 
 
   <!-- SECTION header for Cheese and Clicks per minute -->
@@ -44,9 +45,9 @@
   <!-- SECTION for Game and Shops -->
   <main>
     <!-- SECTION SHOP -->
-    <div class="row text-light">
+    <div class="row h-100 text-light">
       <div id="upgrade-shop"
-        class="col-3 bg-warning rounded-top d-flex text-center align-self-end justify-content-center px-0">
+        class="col-3 bg-warning rounded-top d-flex text-center align-self-end justify-content-center mt-auto px-0">
         <div class="row w-100">
           <h3 class="col-12 p-1" onclick="shopToggle()">upgrades</h3>
           <div class="col-12 bg-secondary">
@@ -60,10 +61,14 @@
         </div>
       </div>
       <!-- SECTION GAME AREA -->
-      <div class="col-6">
-        <img class="img-fluid" onclick="clickCheese('pointer')"
-          src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/super-snow-moon-rises-over-the-banks-of-the-river-loire-at-news-photo-1586295546.jpg?crop=0.6668xw:1xh;center,top&resize=980:*"
-          alt=" no image of moon">
+      <div id="moon" class="col bg-cheese-moon d-flex p-0">
+        <img class="img-fluid " onclick="clickCheese('pointer')" src="./assets/moons/cheese-moon.gif"><span>
+
+          <!-- MINERS GO HERE -->
+          <!-- MINERS GO HERE -->
+          <!-- <img id="miner" class="img-fluid miner" src="./assets/moons/miners/astronaut.gif"></img> -->
+
+        </span>
       </div>
       <!-- SECTION STATS -->
       <div class="col-3 bg-warning rounded-top d-flex text-center align-self-end justify-content-center p-0">
@@ -92,5 +97,5 @@
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
     crossorigin="anonymous"></script>
 </body>
- 
+
 </html>
