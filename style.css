@@ -1,3 +1,7 @@
 .shop-soft-scroll {
   transition: ease .5s;
 }
+
+.bg-nebula {
+  background-image: './assets/nebula-1'
+}
