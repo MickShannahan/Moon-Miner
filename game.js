@@ -23,15 +23,6 @@ let mineMethod = {
     unlocked: true,
     upgradePath: 'cheeseDrill',
   },
-  cheeseDrill: {
-    name: 'Cheese Drill',
-    genValue: 10,
-    upPrice: 250,
-    quantity: 0,
-    upIncrement: 1.5,
-    unlocked: true,
-    upgradePath: 'research Center',
-  },
 }
 
 
