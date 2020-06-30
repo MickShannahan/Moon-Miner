@@ -22,51 +22,51 @@ transform: rotate(50deg);
 /* rotation classes */
 /* SECTION */
 .r1d{
-  transform: rotate(+1deg);
-}
-.r2d{
-  transform: rotate(+2deg);
-}
-.r3d{
-  transform: rotate(+3deg);
-}
-.r4d{
-  transform: rotate(+4deg);
-}
-.r5d{
-  transform: rotate(+5deg);
-}
-.r6d{
   transform: rotate(+6deg);
 }
-.r7d{
-  transform: rotate(+7deg);
+.r2d{
+  transform: rotate(+12deg);
 }
-.r8d{
-  transform: rotate(+8deg);
+.r3d{
+  transform: rotate(+18deg);
 }
-.r9d{
-  transform: rotate(+9deg);
+.r4d{
+  transform: rotate(+24deg);
 }
-.r10d{
-  transform: rotate(+10deg);
-}
-.r20d{
-  transform: rotate(+20deg);
-}
-.r30d{
+.r5d{
   transform: rotate(+30deg);
 }
-.r40d{
-  transform: rotate(+40deg);
+.r6d{
+  transform: rotate(+36deg);
 }
-.r50d{
-  transform: rotate(+50deg);
+.r7d{
+  transform: rotate(+42deg);
 }
-.r60d{
+.r8d{
+  transform: rotate(+48deg);
+}
+.r9d{
+  transform: rotate(+54deg);
+}
+.r10d{
   transform: rotate(+60deg);
 }
-.r70d{
+.r20d{
+  transform: rotate(+120deg);
+}
+.r30d{
+  transform: rotate(+180deg);
+}
+.r40d{
+  transform: rotate(+240deg);
+}
+.r50d{
+  transform: rotate(+300deg);
+}
+.r60d{
+  transform: rotate(+360deg);
+}
+/* .r70d{
   transform: rotate(+70deg);
 }
 .r80d{
@@ -76,7 +76,7 @@ transform: rotate(50deg);
   transform: rotate(+90deg);
 }
 .r100d{
-  transform: rotate(+100deg);
+  transform: rotate(+100deg); */
 }
 /* .r200d{
   transform: rotate(+200deg);

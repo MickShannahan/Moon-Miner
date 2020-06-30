@@ -5,7 +5,8 @@ let isCheeseIntervalRunning = false;
 let second = 1000
 let showCheeseConsole = false;
 // Object To store Cheese Generating Methods
-let mineMethod = {
+let mineMethod = {}
+mineMethod = {
   pointer: {
     name: `Pointer`,
     genValue: 1,
@@ -86,6 +87,7 @@ function autoGetCheese() {
 function cheeseInterval() {
   if (isCheeseIntervalRunning == false) {
     setInterval(autoGetCheese, second)
+    setInterval(saveToLocal, second * 10)
     console.log('Cheese interval counter has started')
   } else {
     console.log('Cheese interval counter is already running')
@@ -145,9 +147,35 @@ function drawUpdate() {
   cheesePerMinElem.innerHTML = `CPM: `
 }
 
+// Save to local Storage
+function saveToLocal() {
+  window.localStorage.setItem("current-cheese", JSON.stringify(currentCheese))
+  window.localStorage.setItem("total-cheese", JSON.stringify(totalCheese))
+  window.localStorage.setItem("mineMethod", JSON.stringify(mineMethod))
+  console.log('game-saved')
+}
+
+// Load from Local Storage
+function loadFromSave() {
+  let savedCheese = JSON.parse(window.localStorage.getItem("current-cheese"))
+  let savedStats = JSON.parse(window.localStorage.getItem("total-cheese"))
+  let savedMiners = JSON.parse(window.localStorage.getItem("mineMethod"))
+
+  if (savedCheese) {
+    currentCheese = savedCheese;
+  }
+  if (savedStats) {
+    totalCheese = savedStats;
+  }
+  if (savedStats) {
+    mineMethod = savedMiners;
+  }
+
+}
 
 
 drawUpdate()
 cheeseInterval()
+loadFromSave()
 
 
