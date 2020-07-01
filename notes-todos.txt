@@ -23,12 +23,9 @@ Stretch Goal Ideas
     Create a way to decrease the interval of automaticCollection
     Prevent the collectionInterval from being started more than once -->
 
-
-    // TODO Function to click the moon and add to cheese
-// TODO Function to set time interval and check for previous time interval that with increment automatic cheese clickers
-// TODO Function to Draw upgrades into shop Dynamically from JS
+TODO Fit Game to ANY Screen
+TODO Disable buy button if not enough Cheese
 // TODO Function to check for checkpoint events
-// TODO function to update all Draw Events (update event)
 // TODO function to draw stats pull stats up and down like a drawer
 // TODO figure out how to draw images around a circle
 // TODO Function to Draw Astronaughts and reasearch buildings on moon

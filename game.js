@@ -1,26 +1,40 @@
 // GLOBAL Variables
 let totalCheese = 0;
-let currentCheese = 0;
+let currentCheese = 1000;
 let isCheeseIntervalRunning = false;
 let second = 1000
+let showCheeseConsole = false;
 // Object To store Cheese Generating Methods
-let mineMethod = {
+let mineMethod = {}
+mineMethod = {
   pointer: {
     name: `Pointer`,
     genValue: 1,
     upPrice: 25,
     quantity: 1,
-    upIncrement: 2,
+    upIncrement: 1.8,
     unlocked: true,
+    asset: '',
     upgradePath: 'nothing',
   },
   astronaut: {
     name: 'Astronaut',
     genValue: 1,
-    upPrice: 100,
+    upPrice: 75,
     quantity: 0,
-    upIncrement: 1.25,
+    upIncrement: 1.2,
     unlocked: true,
+    asset: './assets/moons/miners/astronaut.gif',
+    upgradePath: 'cheeseDrill',
+  },
+  cheeseDrill: {
+    name: 'Cheese Drill',
+    genValue: 10,
+    upPrice: 250,
+    quantity: 0,
+    upIncrement: 1.4,
+    unlocked: false,
+    asset: './assets/moons/miners/cheese-drill.gif',
     upgradePath: 'cheeseDrill',
   },
 }
@@ -45,15 +59,18 @@ function purchaseUpgrade(input) {
   } else {
     window.alert(`Could not buy, need more cheese (${upgradeChoice.upPrice - currentCheese})`)
   }
+  drawMiners(input)
   drawUpdate()
 }
 
 // function ran by clicking moon, increments cheese based on click modifiers
 function clickCheese(input) {
   currentCheese += (mineMethod[input].genValue) * (mineMethod[input].quantity)
-  console.log(`Current Cheese: ${currentCheese}`)
-  console.log(`${input}`)
-
+  totalCheese += (mineMethod[input].genValue) * (mineMethod[input].quantity)
+  if (showCheeseConsole == true) {
+    console.log(`Current Cheese: ${currentCheese}`)
+    console.log(`${input}`)
+  }
   drawUpdate()
 }
 
@@ -70,11 +87,26 @@ function autoGetCheese() {
 function cheeseInterval() {
   if (isCheeseIntervalRunning == false) {
     setInterval(autoGetCheese, second)
+    setInterval(saveToLocal, second * 10)
     console.log('Cheese interval counter has started')
   } else {
     console.log('Cheese interval counter is already running')
   }
 }
+
+// Draw the Miners on the Moon
+function drawMiners(input) {
+  let moonCircle = document.getElementById(`moon`)
+  let ammount = (((mineMethod[input].quantity)).toString()).split('')
+  for (let i = 0; i <= mineMethod[input].quantity && i <= 360; i++) {
+    if (mineMethod[input] !== 'pointer') {
+      moonCircle.innerHTML += `<img id="miner" class=" img-fluid miner r${ammount[0]}d r${ammount[1]}0d r${ammount[2]}00d" src="${mineMethod[input].asset}">`
+      // Working HTML
+      // <img id="miner" class="img-fluid miner" src="./assets/moons/miners/astronaut.gif"></img>
+    }
+  }
+}
+
 
 // Function to draw the Shop Choices
 function drawShop() {
@@ -85,6 +117,9 @@ function drawShop() {
       shopPanel.innerHTML += `<button id="${mineMethod[key].name}" class="col-5 btn btn-outline-warning p-2 my-2 ml-2" onclick="purchaseUpgrade('${key}')">${mineMethod[key].name + Math.ceil(mineMethod[key].upPrice)
         }</button > `
       mineMethod[key].shopDrawn = true;
+    }
+    if (mineMethod[key].quantity >= 10) {
+      mineMethod[mineMethod[key].upgradePath].unlocked = true;
     }
   }
 }
@@ -112,7 +147,35 @@ function drawUpdate() {
   cheesePerMinElem.innerHTML = `CPM: `
 }
 
+// Save to local Storage
+function saveToLocal() {
+  window.localStorage.setItem("current-cheese", JSON.stringify(currentCheese))
+  window.localStorage.setItem("total-cheese", JSON.stringify(totalCheese))
+  window.localStorage.setItem("mineMethod", JSON.stringify(mineMethod))
+  console.log('game-saved')
+}
+
+// Load from Local Storage
+function loadFromSave() {
+  let savedCheese = JSON.parse(window.localStorage.getItem("current-cheese"))
+  let savedStats = JSON.parse(window.localStorage.getItem("total-cheese"))
+  let savedMiners = JSON.parse(window.localStorage.getItem("mineMethod"))
+
+  if (savedCheese) {
+    currentCheese = savedCheese;
+  }
+  if (savedStats) {
+    totalCheese = savedStats;
+  }
+  if (savedStats) {
+    mineMethod = savedMiners;
+  }
+
+}
 
 
 drawUpdate()
 cheeseInterval()
+loadFromSave()
+
+
