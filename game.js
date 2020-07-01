@@ -97,13 +97,21 @@ function cheeseInterval() {
 // Draw the Miners on the Moon
 function drawMiners(input) {
   let moonCircle = document.getElementById(`moon`)
-  let ammount = (((mineMethod[input].quantity)).toString()).split('')
-  for (let i = 0; i <= mineMethod[input].quantity && i <= 360; i++) {
-    if (mineMethod[input] !== 'pointer') {
-      moonCircle.innerHTML += `<img id="miner" class=" img-fluid miner r${ammount[0]}d r${ammount[1]}0d r${ammount[2]}00d" src="${mineMethod[input].asset}">`
-      // Working HTML
-      // <img id="miner" class="img-fluid miner" src="./assets/moons/miners/astronaut.gif"></img>
+  let ammount = (mineMethod[input].quantity)
+  if (input == 'loadMiners') {
+    for (let key in mineMethod) {
+      if (mineMethod[key].quantity > 0) {
+        for (let i = 0; i <= ammount; i++) {
+          moonCircle.innerHTML += `<img id="miner" style="transform: rotate(${i * 8}deg) translate(0px,-455%)" class="miner" src="${mineMethod[key].asset}">`
+        }
+      }
     }
+  } else if (mineMethod[input] !== 'pointer') {
+    // moonCircle.innerHTML += `<img id="miner" class="miner r${ammount}d" src="${mineMethod[input].asset}">`
+    moonCircle.innerHTML += `<img id="miner" style="transform: rotate(${ammount * 8}deg) translate(0px,-455%)" class="miner" src="${mineMethod[input].asset}">`
+    // Working HTML
+    // <img id="miner" class=" miner" style="transform: roatate(0deg) translate(0px,-455%);"
+    //     src="./assets/moons/miners/astronaut.gif"></img>
   }
 }
 
@@ -170,12 +178,12 @@ function loadFromSave() {
   if (savedStats) {
     mineMethod = savedMiners;
   }
-
+  drawMiners('loadMiners')
 }
 
 
 drawUpdate()
 cheeseInterval()
-loadFromSave()
+// loadFromSave()
 
 

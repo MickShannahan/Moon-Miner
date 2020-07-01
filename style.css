@@ -14,57 +14,58 @@
 }
 
 .miner{
+  display: flex;
   z-index: -1;
 position: absolute;
-transform: rotate(50deg);
+justify-self: center;
 }
 
 /* rotation classes */
 /* SECTION */
 .r1d{
-  transform: rotate(+6deg);
+  transform: rotate(+6deg) translate(0px, -455%);
 }
 .r2d{
-  transform: rotate(+12deg);
+  transform: rotate(+12deg) translate(0px, -455%);
 }
 .r3d{
-  transform: rotate(+18deg);
+  transform: rotate(+18deg) translate(0px, -455%);
 }
 .r4d{
-  transform: rotate(+24deg);
+  transform: rotate(+24deg) translate(0px, -455%);
 }
 .r5d{
-  transform: rotate(+30deg);
+  transform: rotate(+30deg) translate(0px, -455%);
 }
 .r6d{
-  transform: rotate(+36deg);
+  transform: rotate(+36deg) translate(0px, -455%);
 }
 .r7d{
-  transform: rotate(+42deg);
+  transform: rotate(+42deg) translate(0px, -455%);
 }
 .r8d{
-  transform: rotate(+48deg);
+  transform: rotate(+48deg) translate(0px, -455%);
 }
 .r9d{
-  transform: rotate(+54deg);
+  transform: rotate(+54deg) translate(0px, -455%);
 }
 .r10d{
-  transform: rotate(+60deg);
+  transform: rotate(+60deg) translate(0px, -455%);
 }
 .r20d{
-  transform: rotate(+120deg);
+  transform: rotate(+120deg) translate(0px, -455%);
 }
 .r30d{
-  transform: rotate(+180deg);
+  transform: rotate(+180deg) translate(0px, -455%);
 }
 .r40d{
-  transform: rotate(+240deg);
+  transform: rotate(+240deg) translate(0px, -455%);
 }
 .r50d{
-  transform: rotate(+300deg);
+  transform: rotate(+300deg) translate(0px, -455%);
 }
 .r60d{
-  transform: rotate(+360deg);
+  transform: rotate(+360deg) translate(0px, -455%);
 }
 /* .r70d{
   transform: rotate(+70deg);
