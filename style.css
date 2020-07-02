@@ -1,5 +1,9 @@
-.shop-soft-scroll {
-  transition: ease .5s;
+.vert-fill{
+  min-height: 100vh;
+}
+
+body{
+ min-height: 100vh;
 }
 
 .bg-nebula-1 {
@@ -10,7 +14,12 @@
 
 .bg-cheese-moon {
   position: relative;
-  min-height: 50vh;
+  min-height:'';
+}
+
+.bg-panel{
+  /* background-color:#fd7e14 ; */
+  background-color: rgba(253,126,20,.3);
 }
 
 .miner{
@@ -19,6 +28,8 @@
 position: absolute;
 justify-self: center;
 }
+
+
 
 /* rotation classes */
 /* SECTION */

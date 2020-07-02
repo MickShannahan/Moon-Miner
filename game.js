@@ -15,6 +15,8 @@ mineMethod = {
     upIncrement: 1.8,
     unlocked: true,
     asset: '',
+    rotate: 0,
+    offset: 0,
     upgradePath: 'nothing',
   },
   astronaut: {
@@ -25,6 +27,8 @@ mineMethod = {
     upIncrement: 1.2,
     unlocked: true,
     asset: './assets/moons/miners/astronaut.gif',
+    rotate: 8,
+    offset: 455,
     upgradePath: 'cheeseDrill',
   },
   cheeseDrill: {
@@ -35,6 +39,8 @@ mineMethod = {
     upIncrement: 1.4,
     unlocked: false,
     asset: './assets/moons/miners/cheese-drill.gif',
+    rotate: 16,
+    offset: 300,
     upgradePath: 'cheeseDrill',
   },
 }
@@ -97,18 +103,20 @@ function cheeseInterval() {
 // Draw the Miners on the Moon
 function drawMiners(input) {
   let moonCircle = document.getElementById(`moon`)
-  let ammount = (mineMethod[input].quantity)
   if (input == 'loadMiners') {
     for (let key in mineMethod) {
       if (mineMethod[key].quantity > 0) {
-        for (let i = 0; i <= ammount; i++) {
-          moonCircle.innerHTML += `<img id="miner" style="transform: rotate(${i * 8}deg) translate(0px,-455%)" class="miner" src="${mineMethod[key].asset}">`
+        for (let i = 0; i <= mineMethod[key].quantity; i++) {
+          moonCircle.innerHTML += `<img id="miner" style="transform: rotate(${(i * mineMethod[key].rotate)}deg) translate(0px,-${mineMethod[key].offset}%)" class="miner" src="${mineMethod[key].asset}">`
         }
       }
     }
   } else if (mineMethod[input] !== 'pointer') {
+    let assetRotate = mineMethod[input].rotate
+    let assetYOffset = mineMethod[input].offset
+    let ammount = (mineMethod[input].quantity)
     // moonCircle.innerHTML += `<img id="miner" class="miner r${ammount}d" src="${mineMethod[input].asset}">`
-    moonCircle.innerHTML += `<img id="miner" style="transform: rotate(${ammount * 8}deg) translate(0px,-455%)" class="miner" src="${mineMethod[input].asset}">`
+    moonCircle.innerHTML += `<img id="miner" style="transform: rotate(${ammount * assetRotate}deg) translate(0px,-${assetYOffset}%)" class="miner" src="${mineMethod[input].asset}">`
     // Working HTML
     // <img id="miner" class=" miner" style="transform: roatate(0deg) translate(0px,-455%);"
     //     src="./assets/moons/miners/astronaut.gif"></img>
@@ -122,8 +130,8 @@ function drawShop() {
   shopPanel.innerHTML = ``
   for (let key in mineMethod) {
     if (mineMethod[key].unlocked == true) {
-      shopPanel.innerHTML += `<button id="${mineMethod[key].name}" class="col-5 btn btn-outline-warning p-2 my-2 ml-2" onclick="purchaseUpgrade('${key}')">${mineMethod[key].name + Math.ceil(mineMethod[key].upPrice)
-        }</button > `
+      shopPanel.innerHTML += `<button id="${mineMethod[key].name}" class="col-5 btn btn-outline-warning p-2 my-2 ml-2" onclick="purchaseUpgrade('${key}')">${mineMethod[key].name}- ${Math.ceil(mineMethod[key].upPrice)
+        } <i class="fa fa-moon-o"></i></button > `
       mineMethod[key].shopDrawn = true;
     }
     if (mineMethod[key].quantity >= 10) {
@@ -151,7 +159,7 @@ function drawUpdate() {
   let cheesePerMinElem = document.getElementById('cheese-per-minute-count')
   drawShop()
   drawStats()
-  cheeseCountElem.innerHTML = `Cheese: ${Math.floor(currentCheese)} `
+  cheeseCountElem.innerHTML = `Cheese: ${Math.floor(currentCheese)} <i class="fa fa-moon-o"></i>`
   cheesePerMinElem.innerHTML = `CPM: `
 }
 
@@ -184,6 +192,6 @@ function loadFromSave() {
 
 drawUpdate()
 cheeseInterval()
-// loadFromSave()
+loadFromSave()
 
 
