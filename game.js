@@ -28,7 +28,7 @@ mineMethod = {
     upIncrement: 1.2,
     unlocked: true,
     asset: './assets/moons/miners/astronaut.gif',
-    sound: '',
+    sound: 'astronaut-spawn',
     rotate: 8,
     offset: 240,
     upgradePath: 'cheeseDrill',
@@ -41,9 +41,9 @@ mineMethod = {
     upIncrement: 1.4,
     unlocked: false,
     asset: './assets/moons/miners/cheese-drill.gif',
-    sound: '',
-    rotate: 16,
-    offset: 255,
+    sound: 'drill-spawn',
+    rotate: 16 * Math.random(),
+    offset: 250,
     upgradePath: 'cheeseDrill',
   },
 }
@@ -65,6 +65,7 @@ function purchaseUpgrade(input) {
     currentCheese -= upgradeChoice.upPrice
     upgradeChoice.upPrice *= upgradeChoice.upIncrement;
     console.log(`purchased 1 ${input}/t- ${upgradeChoice.quantity}`)
+    playMusic(mineMethod[input].sound)
   } else {
     window.alert(`Could not buy, need more cheese (${upgradeChoice.upPrice - currentCheese})`)
   }
@@ -195,8 +196,19 @@ function loadFromSave() {
   drawMiners('loadMiners')
 }
 
+let musicPlaying = false;
 function playMusic(input) {
-  document.getElementById(input).play()
+  if (input == 'bg-music') {
+    if (musicPlaying == false) {
+      document.getElementById(input).play()
+      musicPlaying = true;
+    } else {
+      document.getElementById(input).pause()
+      musicPlaying = false;
+    }
+  } else {
+    document.getElementById(input).play()
+  }
 }
 
 drawUpdate()

@@ -76,7 +76,8 @@
 
 
         <span>
-          <img class="img-fluid " onclick="clickCheese('pointer')" src="./assets/moons/cheese-moon.gif">
+          <img class="img-fluid " onclick="clickCheese('pointer'), playMusic('moon-click')"
+            src="./assets/moons/cheese-moon.gif">
 
 
         </span>
@@ -98,10 +99,10 @@
   </main>
 
   <!-- NOTE MUSIC and SOUNDS -->
-  <audio loop id="bg-music" class="" src="./assets/ohayo.mp3"></audio>
-  <audio id="moon-click" src="./assets/sounds/moon-click.mp3"></audio>
-  <audio id="astronaut-spawn" src="./assets/sounds/astronaut-spawn.mp3"></audio>
-  <audio id="drill-spawn" src="./assets/sounds/drill-spawn.mp3"></audio>
+  <audio loop id="bg-music" class="" src="./assets/nvr.mp3"></audio>
+  <audio id="moon-click" src="./assets/sounds/moon-click.wav"></audio>
+  <audio id="astronaut-spawn" src="./assets/sounds/astronaut-spawn.wav"></audio>
+  <audio id="drill-spawn" src="./assets/sounds/drill-spawn.wav"></audio>
 
   <script src="game.js"></script>
   <!-- Optional JavaScript -->
