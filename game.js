@@ -15,6 +15,7 @@ mineMethod = {
     upIncrement: 1.8,
     unlocked: true,
     asset: '',
+    sound: '',
     rotate: 0,
     offset: 0,
     upgradePath: 'nothing',
@@ -27,6 +28,7 @@ mineMethod = {
     upIncrement: 1.2,
     unlocked: true,
     asset: './assets/moons/miners/astronaut.gif',
+    sound: '',
     rotate: 8,
     offset: 240,
     upgradePath: 'cheeseDrill',
@@ -39,6 +41,7 @@ mineMethod = {
     upIncrement: 1.4,
     unlocked: false,
     asset: './assets/moons/miners/cheese-drill.gif',
+    sound: '',
     rotate: 16,
     offset: 255,
     upgradePath: 'cheeseDrill',
@@ -73,6 +76,9 @@ function purchaseUpgrade(input) {
 function clickCheese(input) {
   currentCheese += (mineMethod[input].genValue) * (mineMethod[input].quantity)
   totalCheese += (mineMethod[input].genValue) * (mineMethod[input].quantity)
+  if (input == 'pointer') {
+    document.getElementById('moon-click').play()
+  }
   if (showCheeseConsole == true) {
     console.log(`Current Cheese: ${currentCheese}`)
     console.log(`${input}`)
@@ -189,8 +195,8 @@ function loadFromSave() {
   drawMiners('loadMiners')
 }
 
-function playMusic() {
-  document.getElementById('bg-music').play()
+function playMusic(input) {
+  document.getElementById(input).play()
 }
 
 drawUpdate()

@@ -28,7 +28,6 @@
 </head>
 
 <body class="bg-nebula-1 text-warning">
-
   <!-- SECTION header for Cheese and Clicks per minute -->
   <header>
     <div class="container-fluid" style="position: absolute;">
@@ -38,8 +37,7 @@
           <h3 id="cheese-count">Cheese</h3>
           <h3 id="cheese-per-minute-count">CPM</h3>
           <div>
-            <i class=" btn btn-outline-warning fa fa-volume-up" onclick="playMusic()"></i>
-            <audio id="bg-music" class="" src="/assets/ohayo.mp3"></audio>
+            <i class=" btn btn-outline-warning fa fa-volume-up" onclick="playMusic('bg-music')"></i>
           </div>
         </div>
       </div>
@@ -98,6 +96,12 @@
       </div>
     </div>
   </main>
+
+  <!-- NOTE MUSIC and SOUNDS -->
+  <audio loop id="bg-music" class="" src="./assets/ohayo.mp3"></audio>
+  <audio id="moon-click" src="./assets/sounds/moon-click.mp3"></audio>
+  <audio id="astronaut-spawn" src="./assets/sounds/astronaut-spawn.mp3"></audio>
+  <audio id="drill-spawn" src="./assets/sounds/drill-spawn.mp3"></audio>
 
   <script src="game.js"></script>
   <!-- Optional JavaScript -->
