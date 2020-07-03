@@ -1,15 +1,19 @@
+.cursor {
+  cursor:url(./assets/cursor.gif), auto;
+}
 .vert-fill{
   min-height: 100vh;
 }
 
 body{
- min-height: 100vh;
+  min-height: 100vh;
 }
 
 .bg-nebula-1 {
   z-index: -10;
   background-image: url('./assets/nebula-1.gif');
   background-size: cover;
+  background-position: center;
 }
 
 .bg-cheese-moon {

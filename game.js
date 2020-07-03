@@ -1,6 +1,8 @@
 // GLOBAL Variables
 let totalCheese = 0;
 let currentCheese = 1000;
+let globalCheeseRefine = 1;
+let prestigeMulti = 1;
 let isCheeseIntervalRunning = false;
 let second = 1000
 let showCheeseConsole = false;
@@ -10,8 +12,10 @@ mineMethod = {
   pointer: {
     name: `Pointer`,
     genValue: 1,
+    refineValue: 0,
     upPrice: 25,
     quantity: 1,
+    maxUnitsDrawn: 50,
     upIncrement: 1.8,
     unlocked: true,
     asset: '',
@@ -23,8 +27,10 @@ mineMethod = {
   astronaut: {
     name: 'Astronaut',
     genValue: 1,
+    refineValue: 0,
     upPrice: 75,
     quantity: 0,
+    maxUnitsDrawn: 50,
     upIncrement: 1.2,
     unlocked: true,
     asset: './assets/moons/miners/astronaut.gif',
@@ -36,15 +42,32 @@ mineMethod = {
   cheeseDrill: {
     name: 'Cheese Drill',
     genValue: 10,
+    refineValue: 0,
     upPrice: 250,
     quantity: 0,
+    maxUnitsDrawn: 50,
     upIncrement: 1.4,
     unlocked: false,
     asset: './assets/moons/miners/cheese-drill.gif',
     sound: 'drill-spawn',
-    rotate: 16 * Math.random(),
+    rotate: 16,
     offset: 250,
-    upgradePath: 'cheeseDrill',
+    upgradePath: 'refinementFactory',
+  },
+  refinementFactory: {
+    name: 'Refinement Factory',
+    genValue: 0,
+    refineValue: 0.1,
+    upPrice: 5000,
+    quantity: 0,
+    maxUnitsDrawn: 50,
+    upIncrement: 1.5,
+    unlocked: false,
+    asset: './assets/moons/miners/cheese-plant.gif',
+    sound: 'factory-spawn',
+    rotate: 25,
+    offset: 250,
+    upgradePath: 'refinementFactory',
   },
 }
 
@@ -66,17 +89,18 @@ function purchaseUpgrade(input) {
     upgradeChoice.upPrice *= upgradeChoice.upIncrement;
     console.log(`purchased 1 ${input}/t- ${upgradeChoice.quantity}`)
     playMusic(mineMethod[input].sound)
+    drawMiners(input)
+    globalCheeseRefine += upgradeChoice.refineValue
   } else {
     window.alert(`Could not buy, need more cheese (${upgradeChoice.upPrice - currentCheese})`)
   }
-  drawMiners(input)
   drawUpdate()
 }
 
 // function ran by clicking moon, increments cheese based on click modifiers
 function clickCheese(input) {
-  currentCheese += (mineMethod[input].genValue) * (mineMethod[input].quantity)
-  totalCheese += (mineMethod[input].genValue) * (mineMethod[input].quantity)
+  currentCheese += ((mineMethod[input].genValue) * globalCheeseRefine) * (mineMethod[input].quantity)
+  totalCheese += ((mineMethod[input].genValue) * globalCheeseRefine) * (mineMethod[input].quantity)
   if (input == 'pointer') {
     document.getElementById('moon-click').play()
   }
@@ -112,7 +136,7 @@ function drawMiners(input) {
   let moonCircle = document.getElementById(`moon`)
   if (input == 'loadMiners') {
     for (let key in mineMethod) {
-      if (mineMethod[key].quantity > 0) {
+      if (mineMethod[key].quantity <= mineMethod[key].maxUnitsDrawn) {
         for (let i = 0; i <= mineMethod[key].quantity; i++) {
           moonCircle.innerHTML += `<img id="miner" style="transform: rotate(${(i * mineMethod[key].rotate)}deg) translate(0px,-${mineMethod[key].offset}px)" class="miner d-flex" src="${mineMethod[key].asset}">`
         }
@@ -201,6 +225,8 @@ function playMusic(input) {
   if (input == 'bg-music') {
     if (musicPlaying == false) {
       document.getElementById(input).play()
+      document.getElementById(input).volume = 0.5;
+
       musicPlaying = true;
     } else {
       document.getElementById(input).pause()
