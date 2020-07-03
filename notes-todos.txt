@@ -21,7 +21,7 @@ Stretch Goal Ideas
     Try using localstorage to save your game progress between page reloads
     Create a badge system to mark user milestones ex. award "The Collector" for mining 1,000,000 total Cheese
     Create a way to decrease the interval of automaticCollection
-    Prevent the collectionInterval from being started more than once -->
+    Pre vent the collectionInterval from being started more than once -->
 
 TODO Fit Game to ANY Screen
 TODO Disable buy button if not enough Cheese
