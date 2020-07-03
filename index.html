@@ -17,18 +17,17 @@
 
 
   <style>
-    * {
+    /* * {
       outline: 1px dotted black;
 
       .row {
         min-height: 10vh;
       }
-    }
+    } */
   </style>
 </head>
 
 <body class="bg-nebula-1 text-warning">
-
 
   <!-- SECTION header for Cheese and Clicks per minute -->
   <header>
@@ -38,6 +37,10 @@
           <h2>Moon Miner</h2>
           <h3 id="cheese-count">Cheese</h3>
           <h3 id="cheese-per-minute-count">CPM</h3>
+          <div>
+            <i class=" btn btn-outline-warning fa fa-volume-up" onclick="playMusic()"></i>
+            <audio id="bg-music" class="" src="/assets/ohayo.mp3"></audio>
+          </div>
         </div>
       </div>
     </div>
@@ -46,9 +49,9 @@
   <!-- SECTION for Game and Shops -->
   <main id="game-area" class="container-fluid">
     <!-- SECTION SHOP -->
-    <div class="row justify-content-between vert-fill text-light">
+    <div class="row justify-content-center align-items-center vert-fill text-light">
       <div id="upgrade-shop"
-        class="col-3 bg-panel rounded-top d-flex text-center align-self-end justify-content-center mt-auto px-0">
+        class="col-3 bg-panel rounded-top d-flex text-center align-self-end justify-content-center justify-self-start mt-auto px-0">
         <div class="row w-100">
           <h3 class="col-12 bg-warning rounded-top p-1" data-toggle="collapse" data-target="#upgrade-shop-panel"
             role="button" aria-expanded="false" aria-controls="collapseExample" onclick="shopToggle()">upgrades</h3>
@@ -63,7 +66,7 @@
         </div>
       </div>
       <!-- SECTION GAME AREA -->
-      <div id="moon" class="col-5 img-fluid bg-cheese-moon d-flex justify-content-center align-items-center p-0">
+      <div id="moon" class=" bg-cheese-moon d-flex justify-content-center align-items-center mx-auto p-0">
         <!-- MINERS GO HERE -->
         <!-- MINERS GO HERE -->
 
@@ -81,6 +84,7 @@
         </span>
       </div>
       <!-- SECTION STATS -->
+      <div class="col-6"></div>
       <div class="col-3 bg-panel rounded-top d-flex text-center align-self-end justify-content-center mx-0 p-0">
         <div class="row w-100">
           <h3 class="col-12 bg-warning rounded-top p-1" data-toggle="collapse" data-target="#stats-panel" role="button"

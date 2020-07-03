@@ -13,8 +13,8 @@ body{
 }
 
 .bg-cheese-moon {
-  position: relative;
-  min-height:'';
+  position: absolute;
+  max-width: 600px;
 }
 
 .bg-panel{

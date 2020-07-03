@@ -28,7 +28,7 @@ mineMethod = {
     unlocked: true,
     asset: './assets/moons/miners/astronaut.gif',
     rotate: 8,
-    offset: 455,
+    offset: 240,
     upgradePath: 'cheeseDrill',
   },
   cheeseDrill: {
@@ -40,7 +40,7 @@ mineMethod = {
     unlocked: false,
     asset: './assets/moons/miners/cheese-drill.gif',
     rotate: 16,
-    offset: 300,
+    offset: 255,
     upgradePath: 'cheeseDrill',
   },
 }
@@ -107,7 +107,7 @@ function drawMiners(input) {
     for (let key in mineMethod) {
       if (mineMethod[key].quantity > 0) {
         for (let i = 0; i <= mineMethod[key].quantity; i++) {
-          moonCircle.innerHTML += `<img id="miner" style="transform: rotate(${(i * mineMethod[key].rotate)}deg) translate(0px,-${mineMethod[key].offset}%)" class="miner" src="${mineMethod[key].asset}">`
+          moonCircle.innerHTML += `<img id="miner" style="transform: rotate(${(i * mineMethod[key].rotate)}deg) translate(0px,-${mineMethod[key].offset}px)" class="miner d-flex" src="${mineMethod[key].asset}">`
         }
       }
     }
@@ -116,7 +116,7 @@ function drawMiners(input) {
     let assetYOffset = mineMethod[input].offset
     let ammount = (mineMethod[input].quantity)
     // moonCircle.innerHTML += `<img id="miner" class="miner r${ammount}d" src="${mineMethod[input].asset}">`
-    moonCircle.innerHTML += `<img id="miner" style="transform: rotate(${ammount * assetRotate}deg) translate(0px,-${assetYOffset}%)" class="miner" src="${mineMethod[input].asset}">`
+    moonCircle.innerHTML += `<img id="miner" style="transform: rotate(${ammount * assetRotate}deg) translate(0px,-${assetYOffset}px)" class="miner d-flex" src="${mineMethod[input].asset}">`
     // Working HTML
     // <img id="miner" class=" miner" style="transform: roatate(0deg) translate(0px,-455%);"
     //     src="./assets/moons/miners/astronaut.gif"></img>
@@ -189,9 +189,12 @@ function loadFromSave() {
   drawMiners('loadMiners')
 }
 
+function playMusic() {
+  document.getElementById('bg-music').play()
+}
 
 drawUpdate()
 cheeseInterval()
-loadFromSave()
+// loadFromSave()
 
 
