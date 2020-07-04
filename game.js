@@ -22,7 +22,7 @@ mineMethod = {
     sound: '',
     rotate: 0,
     offset: 0,
-    upgradePath: 'nothing',
+    upgradePath: 'none',
   },
   astronaut: {
     name: 'Astronaut',
@@ -67,7 +67,7 @@ mineMethod = {
     sound: 'factory-spawn',
     rotate: 25,
     offset: 250,
-    upgradePath: 'refinementFactory',
+    upgradePath: 'none',
   },
 }
 
@@ -165,7 +165,9 @@ function drawShop() {
         } <i class="fa fa-moon-o"></i></button > `
       mineMethod[key].shopDrawn = true;
     }
-    if (mineMethod[key].quantity >= 10) {
+    if (mineMethod[key].quantity == 'none'){
+      continue;
+    }else if (mineMethod[key].quantity >= 10) {
       mineMethod[mineMethod[key].upgradePath].unlocked = true;
     }
   }
