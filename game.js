@@ -239,6 +239,6 @@ function playMusic(input) {
 
 drawUpdate()
 cheeseInterval()
-// loadFromSave()
+loadFromSave()
 
 
