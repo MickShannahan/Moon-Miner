@@ -1,6 +1,7 @@
 // GLOBAL Variables
 let totalCheese = 0;
 let currentCheese = 1000;
+let cheesePerMin = 0;
 let globalCheeseRefine = 1;
 let prestigeMulti = 1;
 let isCheeseIntervalRunning = false;
@@ -18,8 +19,9 @@ mineMethod = {
     maxUnitsDrawn: 50,
     upIncrement: 1.8,
     unlocked: true,
+    toolTip: 'increase mine power of pointer by 1',
     asset: '',
-    sound: '',
+    sound: 'pointer-up',
     rotate: 0,
     offset: 0,
     upgradePath: 'nothing',
@@ -33,6 +35,7 @@ mineMethod = {
     maxUnitsDrawn: 50,
     upIncrement: 1.2,
     unlocked: true,
+    toolTip: 'Astronauts mine 1 cheese per second',
     asset: './assets/moons/miners/astronaut.gif',
     sound: 'astronaut-spawn',
     rotate: 8,
@@ -48,6 +51,7 @@ mineMethod = {
     maxUnitsDrawn: 50,
     upIncrement: 1.4,
     unlocked: false,
+    toolTip: 'Drills mine 10 cheese per second',
     asset: './assets/moons/miners/cheese-drill.gif',
     sound: 'drill-spawn',
     rotate: 16,
@@ -57,11 +61,12 @@ mineMethod = {
   refinementFactory: {
     name: 'Refinement Factory',
     genValue: 0,
-    refineValue: 0.1,
+    refineValue: 0.05,
     upPrice: 5000,
     quantity: 0,
     maxUnitsDrawn: 50,
     upIncrement: 1.5,
+    toolTip: 'Each Refinement factory increases totaly mining production by 5%',
     unlocked: false,
     asset: './assets/moons/miners/cheese-plant.gif',
     sound: 'factory-spawn',
@@ -80,9 +85,12 @@ function shopToggle() {
   shopElem.style.height = '100%'
 }
 
+// function to alert purchase
+
 // Function To purchase upgrades
 function purchaseUpgrade(input) {
   let upgradeChoice = mineMethod[input]
+  let noBuyAlert = document.getElementById('shop-alert-space')
   if (upgradeChoice.upPrice <= currentCheese) {
     upgradeChoice.quantity += 1;
     currentCheese -= upgradeChoice.upPrice
@@ -92,10 +100,18 @@ function purchaseUpgrade(input) {
     drawMiners(input)
     globalCheeseRefine += upgradeChoice.refineValue
   } else {
-    window.alert(`Could not buy, need more cheese (${upgradeChoice.upPrice - currentCheese})`)
+    noBuyAlert.innerHTML = `<div id='shop-alert' class="col-12 order-first alert alert-danger alert-dismissable fade show" role="alert">
+    Could not buy ${upgradeChoice.name}, need ${Math.ceil(upgradeChoice.upPrice - currentCheese)} <i class="fa fa-moon-o"></i>
+  </div>`
+    function alertTimeout() {
+      noBuyAlert.innerHTML = ''
+    }
+    setTimeout(alertTimeout, 4 * second)
+    // window.alert(`Could not buy, need more cheese (${upgradeChoice.upPrice - currentCheese})`)
   }
   drawUpdate()
 }
+
 
 // function ran by clicking moon, increments cheese based on click modifiers
 function clickCheese(input) {
@@ -118,6 +134,17 @@ function autoGetCheese() {
       clickCheese(key)
     }
   }
+}
+
+// determine CPM
+function findCPM() {
+  let cheeseCounter = 0
+  for (let key in mineMethod) {
+    if (key !== 'pointer') {
+      cheeseCounter += (mineMethod[key].genValue * mineMethod[key].quantity)
+    }
+  }
+  cheesePerMin = Math.round((cheeseCounter / 60) * 100) / 100
 }
 
 // Function to increment Time and add to Cheese count based on modifiers
@@ -160,9 +187,13 @@ function drawShop() {
   let shopPanel = document.getElementById('upgrade-shop-panel')
   shopPanel.innerHTML = ``
   for (let key in mineMethod) {
-    if (mineMethod[key].unlocked == true) {
-      shopPanel.innerHTML += `<button id="${mineMethod[key].name}" class="col-5 btn btn-outline-warning p-2 my-2 ml-2" onclick="purchaseUpgrade('${key}')">${mineMethod[key].name}- ${Math.ceil(mineMethod[key].upPrice)
+    if (mineMethod[key].unlocked == true && currentCheese >= mineMethod[key].upPrice) {
+      shopPanel.innerHTML += `<button id="${mineMethod[key].name}" class="col-5 btn btn-warning p-3 my-2 ml-2" onclick="purchaseUpgrade('${key}')" data-toggle="tooltip" data-placement="top" title="${mineMethod[key].toolTip}" aria-disabled = 'false'>${mineMethod[key].name}- ${Math.ceil(mineMethod[key].upPrice)
         } <i class="fa fa-moon-o"></i></button > `
+      mineMethod[key].shopDrawn = true;
+    }
+    else if (mineMethod[key].unlocked == true) {
+      shopPanel.innerHTML += `<button id="${mineMethod[key].name}" class="col-5 btn btn-outline-warning disabled p-3 my-2 ml-2" onclick="purchaseUpgrade('${key}')" aria-disabled= 'true'>${mineMethod[key].name}- ${Math.ceil(mineMethod[key].upPrice)} <i class="fa fa-moon-o"></i></button > `
       mineMethod[key].shopDrawn = true;
     }
     if (mineMethod[key].quantity >= 10) {
@@ -171,13 +202,14 @@ function drawShop() {
   }
 }
 
+
 // Function to draw the Stats Page
 function drawStats() {
   let statPanel = document.getElementById('stats-panel')
   statPanel.innerHTML = ''
   for (let key in mineMethod) {
     if (mineMethod[key].quantity > 0 && key !== 'pointer') {
-      statPanel.innerHTML += `<div id = "${mineMethod[key].name}" class="col-4 text-warning px-3 py-1" onclick = "purchaseUpgrade('${key}')" > ${mineMethod[key].name} - ${mineMethod[key].quantity}: ${(mineMethod[key].genValue) * (mineMethod[key].quantity)} cps</div> `
+      statPanel.innerHTML += `<div id = "${mineMethod[key].name}" class="col-12 text-light d-flex justify-text-start px-3 py-1" onclick = "purchaseUpgrade('${key}')" > ${mineMethod[key].name} - ${mineMethod[key].quantity}: ${(mineMethod[key].genValue) * (mineMethod[key].quantity)} cps</div> `
     }
   }
 
@@ -190,8 +222,9 @@ function drawUpdate() {
   let cheesePerMinElem = document.getElementById('cheese-per-minute-count')
   drawShop()
   drawStats()
-  cheeseCountElem.innerHTML = `Cheese: ${Math.floor(currentCheese)} <i class="fa fa-moon-o"></i>`
-  cheesePerMinElem.innerHTML = `CPM: `
+  findCPM()
+  cheeseCountElem.innerHTML = ` ${Math.floor(currentCheese)}  <i class="fa fa-moon-o"></i>`
+  cheesePerMinElem.innerHTML = `${cheesePerMin}   <i class="fa fa-area-chart"></i> `
 }
 
 // Save to local Storage
@@ -236,6 +269,7 @@ function playMusic(input) {
     document.getElementById(input).play()
   }
 }
+
 
 drawUpdate()
 cheeseInterval()

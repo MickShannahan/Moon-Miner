@@ -33,6 +33,16 @@ position: absolute;
 justify-self: center;
 }
 
+.text-holo{
+  text-shadow:rgb(255, 21, 216) 4px 3px, rgb(89, 197, 240) -4px 3px ;
+}
+
+.font-title{
+  font-size: 4.5em;
+}
+.font-moon{
+  font-family: 'Montserrat Subrayada', sans-serif;
+}
 
 
 /* rotation classes */

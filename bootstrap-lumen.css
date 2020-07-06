@@ -26,10 +26,10 @@
   --white: #fff;
   --gray: #999;
   --gray-dark: #333;
-  --primary: #158CBA;
-  --secondary: #f0f0f0;
+  --primary: #5bc3ec;
+  --secondary: #f747df;
   --success: #28B62C;
-  --info: #75CAEB;
+  --info: #eee674;
   --warning: #FF851B;
   --danger: #FF4136;
   --light: #f6f6f6;
@@ -7268,11 +7268,11 @@ button.bg-dark:focus {
 }
 
 .border-primary {
-  border-color: #158CBA !important;
+  border-color: var(--primary) !important;
 }
 
 .border-secondary {
-  border-color: #f0f0f0 !important;
+  border-color: var(--secondary) !important;
 }
 
 .border-success {
@@ -7280,7 +7280,7 @@ button.bg-dark:focus {
 }
 
 .border-info {
-  border-color: #75CAEB !important;
+  border-color: var(--info) !important;
 }
 
 .border-warning {
