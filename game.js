@@ -224,8 +224,10 @@ function drawStats() {
   let statPanel = document.getElementById('stats-panel')
   statPanel.innerHTML = ''
   for (let key in mineMethod) {
-    if (mineMethod[key].quantity > 0 && key !== 'pointer') {
+    if (mineMethod[key].quantity > 0 && key !== 'refinementFactory') {
       statPanel.innerHTML += `<div id = "${mineMethod[key].name}" class="col-12 text-light d-flex justify-text-start px-3 py-1" onclick = "purchaseUpgrade('${key}')" > ${mineMethod[key].name} - ${mineMethod[key].quantity}: ${(mineMethod[key].genValue) * (mineMethod[key].quantity)} cps</div> `
+    } else if (mineMethod[key].quantity > 0 && key !== 'pointer') {
+      statPanel.innerHTML += `<div id = "${mineMethod[key].name}" class="col-12 text-light d-flex justify-text-start px-3 py-1" onclick = "purchaseUpgrade('${key}')" > ${mineMethod[key].name} - ${mineMethod[key].quantity}: ${(mineMethod[key].refineValue) * (mineMethod[key].quantity)}% refine</div> `
     }
   }
 
