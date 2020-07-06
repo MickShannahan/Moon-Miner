@@ -1,6 +1,6 @@
 // GLOBAL Variables
 let totalCheese = 0;
-let currentCheese = 1000;
+let currentCheese = 0;
 let cheesePerMin = 0;
 let globalCheeseRefine = 1;
 let prestigeMulti = 1;
@@ -273,6 +273,6 @@ function playMusic(input) {
 
 drawUpdate()
 cheeseInterval()
-loadFromSave()
+// loadFromSave()
 
 
