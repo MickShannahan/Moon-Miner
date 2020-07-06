@@ -76,6 +76,13 @@ mineMethod = {
   },
 }
 
+function cheaterCheaterCheddarCheeseEater() {
+  for (let key in mineMethod) {
+    mineMethod[key].unlocked = true
+  }
+  currentCheese += 10000
+
+}
 
 // Function to toggle the Shop 
 function shopToggle() {
