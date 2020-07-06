@@ -4,6 +4,7 @@ let currentCheese = 0;
 let cheesePerMin = 0;
 let globalCheeseRefine = 1;
 let prestigeMulti = 1;
+let clickPause = false;
 let isCheeseIntervalRunning = false;
 let second = 1000
 let showCheeseConsole = false;
@@ -127,10 +128,16 @@ function purchaseUpgrade(input) {
 
 // function ran by clicking moon, increments cheese based on click modifiers
 function clickCheese(input) {
-  currentCheese += ((mineMethod[input].genValue) * globalCheeseRefine) * (mineMethod[input].quantity)
-  totalCheese += ((mineMethod[input].genValue) * globalCheeseRefine) * (mineMethod[input].quantity)
+  if (clickPause == false) {
+    currentCheese += ((mineMethod[input].genValue) * globalCheeseRefine) * (mineMethod[input].quantity)
+    totalCheese += ((mineMethod[input].genValue) * globalCheeseRefine) * (mineMethod[input].quantity)
+  }
   if (input == 'pointer') {
     document.getElementById('moon-click').play()
+    clickPause = true;
+    setTimeout(function () {
+      clickPause = false
+    }, second * 0.2)
   }
   if (showCheeseConsole == true) {
     console.log(`Current Cheese: ${currentCheese}`)
