@@ -19,22 +19,17 @@ Stretch Goal Ideas
     Unlock/hide upgrades until the user has enough resources at least once to afford the item
     Consider how you could add bonuses that could increase the multiplier of automaticUpgrades
     Try using localstorage to save your game progress between page reloads
-    Create a badge system to mark user milestones ex. award "The Collector" for mining 1,000,000 total Cheese
+    TODO Create a badge system to mark user milestones ex. award "The Collector" for mining 1,000,000 total Cheese
     Create a way to decrease the interval of automaticCollection
     Pre vent the collectionInterval from being started more than once -->
 
 TODO Fit Game to ANY Screen
-TODO Disable buy button if not enough Cheese
-// TODO Function to check for checkpoint events
-// TODO function to draw stats pull stats up and down like a drawer
-// TODO figure out how to draw images around a circle
-// TODO Function to Draw Astronaughts and reasearch buildings on moon
-// TODO Make display for mobile
-// TODO write data to local storage for closing the browser and opening back up
-// TODO custom theme
-// TODO Render out images for
-      moon
-      Astronaughts
+ TODO Function to check for checkpoint events
+ TODO Make display for mobile
+ TODO add Alien Attcks
+ TODO add other moons
+ TODO add more upgrades
+
 
 
     
