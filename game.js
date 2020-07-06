@@ -117,7 +117,7 @@ function purchaseUpgrade(input) {
     // window.alert(`Could not buy, need more cheese (${upgradeChoice.upPrice - currentCheese})`)
   }
   if (mineMethod[input].upgradePath !== 'none') {
-    (mineMethod[input].quantity >= 10) {
+    if (mineMethod[input].quantity >= 10) {
       mineMethod[mineMethod[input].upgradePath].unlocked = true;
     }
   }
