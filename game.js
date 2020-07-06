@@ -1,11 +1,7 @@
 // GLOBAL Variables
 let totalCheese = 0;
-<<<<<<< HEAD
 let currentCheese = 1000;
 let cheesePerMin = 0;
-=======
-let currentCheese = 0;
->>>>>>> 397e5bf5374230e4ab742f37f76d7b54483ee76c
 let globalCheeseRefine = 1;
 let prestigeMulti = 1;
 let isCheeseIntervalRunning = false;
