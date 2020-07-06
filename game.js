@@ -1,7 +1,11 @@
 // GLOBAL Variables
 let totalCheese = 0;
+<<<<<<< HEAD
 let currentCheese = 1000;
 let cheesePerMin = 0;
+=======
+let currentCheese = 0;
+>>>>>>> 397e5bf5374230e4ab742f37f76d7b54483ee76c
 let globalCheeseRefine = 1;
 let prestigeMulti = 1;
 let isCheeseIntervalRunning = false;
@@ -17,14 +21,14 @@ mineMethod = {
     upPrice: 25,
     quantity: 1,
     maxUnitsDrawn: 50,
-    upIncrement: 1.8,
+    upIncrement: 1.5,
     unlocked: true,
     toolTip: 'increase mine power of pointer by 1',
     asset: '',
     sound: 'pointer-up',
     rotate: 0,
     offset: 0,
-    upgradePath: 'nothing',
+    upgradePath: 'none',
   },
   astronaut: {
     name: 'Astronaut',
@@ -33,7 +37,7 @@ mineMethod = {
     upPrice: 75,
     quantity: 0,
     maxUnitsDrawn: 50,
-    upIncrement: 1.2,
+    upIncrement: 1.1,
     unlocked: true,
     toolTip: 'Astronauts mine 1 cheese per second',
     asset: './assets/moons/miners/astronaut.gif',
@@ -72,7 +76,7 @@ mineMethod = {
     sound: 'factory-spawn',
     rotate: 25,
     offset: 250,
-    upgradePath: 'refinementFactory',
+    upgradePath: 'none',
   },
 }
 
@@ -192,11 +196,17 @@ function drawShop() {
         } <i class="fa fa-moon-o"></i></button > `
       mineMethod[key].shopDrawn = true;
     }
+<<<<<<< HEAD
     else if (mineMethod[key].unlocked == true) {
       shopPanel.innerHTML += `<button id="${mineMethod[key].name}" class="col-5 btn btn-outline-warning disabled p-3 my-2 ml-2" onclick="purchaseUpgrade('${key}')" aria-disabled= 'true'>${mineMethod[key].name}- ${Math.ceil(mineMethod[key].upPrice)} <i class="fa fa-moon-o"></i></button > `
       mineMethod[key].shopDrawn = true;
     }
     if (mineMethod[key].quantity >= 10) {
+=======
+    if (mineMethod[key].quantity == 'none'){
+      continue;
+    }else if (mineMethod[key].quantity >= 10) {
+>>>>>>> 397e5bf5374230e4ab742f37f76d7b54483ee76c
       mineMethod[mineMethod[key].upgradePath].unlocked = true;
     }
   }
@@ -273,6 +283,6 @@ function playMusic(input) {
 
 drawUpdate()
 cheeseInterval()
-// loadFromSave()
+loadFromSave()
 
 
