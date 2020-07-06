@@ -205,7 +205,7 @@ function drawShop() {
       mineMethod[key].shopDrawn = true;
     }
     else if (mineMethod[key].unlocked == true) {
-      shopPanel.innerHTML += `<button id="${mineMethod[key].name}" class="col-5 btn btn-outline-warning disabled p-3 my-2 ml-2" onclick="purchaseUpgrade('${key}')" aria-disabled= 'true'>${mineMethod[key].name}- ${Math.ceil(mineMethod[key].upPrice)} <i class="fa fa-moon-o"></i></button > `
+      shopPanel.innerHTML += `<button id="${mineMethod[key].name}" class="col-5 btn btn-outline-warning disabled p-3 my-2 ml-2" data-toggle="tooltip" data-placement="top" title="${mineMethod[key].toolTip}" onclick="purchaseUpgrade('${key}')" aria-disabled= 'true'>${mineMethod[key].name}- ${Math.ceil(mineMethod[key].upPrice)} <i class="fa fa-moon-o"></i></button > `
       mineMethod[key].shopDrawn = true;
     }
   }
