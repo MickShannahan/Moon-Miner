@@ -163,7 +163,7 @@ function findCPM() {
       cheeseCounter += (mineMethod[key].genValue * mineMethod[key].quantity)
     }
   }
-  cheesePerMin = Math.round((cheeseCounter / 60) * 100) / 100
+  cheesePerMin = Math.round((cheeseCounter * 60) * 100) / 100
 }
 
 // Function to increment Time and add to Cheese count based on modifiers
