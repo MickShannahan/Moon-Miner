@@ -20,7 +20,7 @@ Stretch Goal Ideas
     Consider how you could add bonuses that could increase the multiplier of automaticUpgrades
     Try using localstorage to save your game progress between page reloads
     TODO Create a badge system to mark user milestones ex. award "The Collector" for mining 1,000,000 total Cheese
-    Create a way to decrease the interval of automaticCollection
+    TODO ? Create a way to decrease the interval of automaticCollection
     Pre vent the collectionInterval from being started more than once -->
 
 TODO Fit Game to ANY Screen
