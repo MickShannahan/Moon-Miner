@@ -192,17 +192,11 @@ function drawShop() {
         } <i class="fa fa-moon-o"></i></button > `
       mineMethod[key].shopDrawn = true;
     }
-<<<<<<< HEAD
     else if (mineMethod[key].unlocked == true) {
       shopPanel.innerHTML += `<button id="${mineMethod[key].name}" class="col-5 btn btn-outline-warning disabled p-3 my-2 ml-2" onclick="purchaseUpgrade('${key}')" aria-disabled= 'true'>${mineMethod[key].name}- ${Math.ceil(mineMethod[key].upPrice)} <i class="fa fa-moon-o"></i></button > `
       mineMethod[key].shopDrawn = true;
     }
     if (mineMethod[key].quantity >= 10) {
-=======
-    if (mineMethod[key].quantity == 'none'){
-      continue;
-    }else if (mineMethod[key].quantity >= 10) {
->>>>>>> 397e5bf5374230e4ab742f37f76d7b54483ee76c
       mineMethod[mineMethod[key].upgradePath].unlocked = true;
     }
   }
