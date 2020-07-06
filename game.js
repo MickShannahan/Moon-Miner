@@ -116,6 +116,11 @@ function purchaseUpgrade(input) {
     setTimeout(alertTimeout, 4 * second)
     // window.alert(`Could not buy, need more cheese (${upgradeChoice.upPrice - currentCheese})`)
   }
+  if (mineMethod[input].upgradePath !== 'none') {
+    (mineMethod[input].quantity >= 10) {
+      mineMethod[mineMethod[input].upgradePath].unlocked = true;
+    }
+  }
   drawUpdate()
 }
 
@@ -202,9 +207,6 @@ function drawShop() {
     else if (mineMethod[key].unlocked == true) {
       shopPanel.innerHTML += `<button id="${mineMethod[key].name}" class="col-5 btn btn-outline-warning disabled p-3 my-2 ml-2" onclick="purchaseUpgrade('${key}')" aria-disabled= 'true'>${mineMethod[key].name}- ${Math.ceil(mineMethod[key].upPrice)} <i class="fa fa-moon-o"></i></button > `
       mineMethod[key].shopDrawn = true;
-    }
-    if (mineMethod[key].quantity >= 10) {
-      mineMethod[mineMethod[key].upgradePath].unlocked = true;
     }
   }
 }
