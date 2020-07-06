@@ -107,7 +107,7 @@ function purchaseUpgrade(input) {
     drawMiners(input)
     globalCheeseRefine += upgradeChoice.refineValue
   } else {
-    noBuyAlert.innerHTML = `<div id='shop-alert' class="col-12 order-first alert alert-danger alert-dismissable fade show" role="alert">
+    noBuyAlert.innerHTML = `<div id='shop-alert' class="col-12 order-1 alert alert-danger alert-dismissable fade show" role="alert">
     Could not buy ${upgradeChoice.name}, need ${Math.ceil(upgradeChoice.upPrice - currentCheese)} <i class="fa fa-moon-o"></i>
   </div>`
     function alertTimeout() {
